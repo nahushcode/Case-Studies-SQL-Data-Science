@@ -49,6 +49,11 @@ select *,rank() over(partition by platform order by sales desc ) as sales  from 
 
 -- finding the top 3 games in this one . 
 
+select * from 
+(select *,rank() over(partition by platform order by sales desc ) as sales_rank  from videogames) litmus
+where litmus.sales_rank < 4 
+order by litmus.platform,litmus.sales_rank ;
+
 
 
 
